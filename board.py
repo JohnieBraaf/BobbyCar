@@ -59,7 +59,7 @@ class HoverBoard(object):
             rx = self.uart.read()       
             pyb.LED(3).toggle()
 
-            # if we get multiple messages process only most recent message
+            # if we get multiple messages, process only most recent message
             # this should normally not happen, reduce loop time to solve
             messages = len(rx) // 18
             if messages > 1:
@@ -90,3 +90,6 @@ class HoverBoard(object):
         checksum = int(0xABCD) ^ int(steer) ^ int(speed)
         msg = struct.pack('HhhH', int(0xABCD), steer, speed, checksum)
         self.uart.write(msg)
+
+    def flush(self):
+        self.uart.read()

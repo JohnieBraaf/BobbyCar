@@ -29,6 +29,8 @@ class BobbyCar(object):
                 self.board.speed = 0
                 self.speed_previous = 0
                 self.board.send(0) # stationary
+            elif self.control.warn_previous:
+                self.board.flush() # empty rx buffer
 
             else:
                 # forward
