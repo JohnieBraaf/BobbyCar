@@ -2,8 +2,9 @@
 
 Micropython based control software for a BobbyCar electrification.
 
-![Screenshot](doc/img/big_bobbycar.png)
-![Screenshot](doc/img/big_wheel.png)
+| Bobby Car  | Wheel       |
+|------------|-------------|
+| <img src="https://github.com/JohnieBraaf/BobbyCar/tree/main/doc/img/big_bobbycar.png?raw=true" width="250"> | <img src="https://github.com/JohnieBraaf/BobbyCar/tree/main/doc/img/big_wheel.png?raw=true" width="250"> |
 
 Components: 
  - [Big Bobby car](https://github.com/JohnieBraaf/BobbyCar/tree/main/doc/img/big_bobbycar.png)
