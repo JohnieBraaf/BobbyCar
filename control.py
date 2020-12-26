@@ -16,7 +16,7 @@ class Controller(object):
         self.radio_pin = pyb.ADC(pyb.Pin.board.PA7)
 
         # parameters
-        self.limit = 1000 # we check if the pin voltage goes low (i.e. below the limit value)
+        self.limit = 2000 # we check if the pin voltage goes low (i.e. below the limit value)
 
         # initalizes states
         self.minus = self.minus_previous = False

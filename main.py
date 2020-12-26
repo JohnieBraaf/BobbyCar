@@ -11,8 +11,8 @@ class BobbyCar(object):
         self.direction = 0 # stationary
 
         # speeds
-        self.gears_forward = 5   # number of forward gears
-        self.gears_backward = 8  # number of backward gears
+        self.gears_forward = 10  # number of forward gears
+        self.gears_backward = 3  # number of backward gears
         self.speed_stepping = 50 # increment per gear
         self.speed_default = 100  # i.e target speed 1st gear = default + 1x stepping
 
