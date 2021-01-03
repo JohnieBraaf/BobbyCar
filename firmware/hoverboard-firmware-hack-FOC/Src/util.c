@@ -820,25 +820,32 @@ void poweroffPressCheck(void) {
     if(HAL_GPIO_ReadPin(BUTTON_PORT, BUTTON_PIN)) {
       enable = 0;
       uint16_t cnt_press = 0;
-      while(HAL_GPIO_ReadPin(BUTTON_PORT, BUTTON_PIN)) {
-        HAL_Delay(10);
-        if (cnt_press++ == 5 * 100) { beepShort(5); }
-      }
-      if (cnt_press >= 5 * 100) {                         // Check if press is more than 5 sec
-        HAL_Delay(1000);
-        if (HAL_GPIO_ReadPin(BUTTON_PORT, BUTTON_PIN)) {  // Double press: Adjust Max Current, Max Speed
-          while(HAL_GPIO_ReadPin(BUTTON_PORT, BUTTON_PIN)) { HAL_Delay(10); }
-          beepLong(8);
-          updateCurSpdLim();
-          beepShort(5);
-        } else {                                          // Long press: Calibrate ADC Limits
-          beepLong(16); 
-          adcCalibLim();
-          beepShort(5);
-        }
-      } else {                                            // Short press: power off
-        poweroff();
-      }
+      //while(HAL_GPIO_ReadPin(BUTTON_PORT, BUTTON_PIN)) {
+      //  HAL_Delay(10);
+      //  if (cnt_press++ == 5 * 100) { beepShort(5); }
+      //}
+      //if (cnt_press >= 5 * 100) {                         // Check if press is more than 5 sec
+      //  HAL_Delay(1000);
+      //  if (HAL_GPIO_ReadPin(BUTTON_PORT, BUTTON_PIN)) {  // Double press: Adjust Max Current, Max Speed
+      //    while(HAL_GPIO_ReadPin(BUTTON_PORT, BUTTON_PIN)) { HAL_Delay(10); }
+      //    beepLong(8);
+      //    updateCurSpdLim();
+      //    beepShort(5);
+      //  } else {                                          // Long press: Calibrate ADC Limits
+      //    beepLong(16); 
+      //    adcCalibLim();
+      //    beepShort(5);
+      //  }
+      //} else {                                            // Short press: power off
+			
+			// turn off when button pressed 
+			//while(HAL_GPIO_ReadPin(BUTTON_PORT, BUTTON_PIN)) {
+				//HAL_Delay(10);
+				//if (cnt_press++ == 50) {
+					beepShort(5);
+					poweroff();
+				//}
+      //}
     }
   #elif defined(VARIANT_TRANSPOTTER)
     if(HAL_GPIO_ReadPin(BUTTON_PORT, BUTTON_PIN)) {

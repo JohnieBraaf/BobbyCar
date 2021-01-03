@@ -94,6 +94,7 @@ extern volatile uint16_t pwm_captured_ch1_value;
 extern volatile uint16_t pwm_captured_ch2_value;
 #endif
 
+boolean_T power_button_released = false;
 
 //------------------------------------------------------------------------
 // Global variables set here in main.c
@@ -196,11 +197,16 @@ int main(void) {
   int32_t board_temp_adcFixdt = adc_buffer.temp << 16;  // Fixed-point filter output initialized with current ADC converted to fixed-point
   int16_t board_temp_adcFilt  = adc_buffer.temp;
   int16_t board_temp_deg_c;
-
+	
+	// wait 1 second for the controller to boot
+	HAL_Delay(1100);
 
   while(1) {
     HAL_Delay(DELAY_IN_MAIN_LOOP);        //delay in ms
 
+
+		
+		
     readCommand();                        // Read Command: cmd1, cmd2
     calcAvgSpeed();                       // Calculate average measured speed: speedAvg, speedAvgAbs
 
@@ -459,7 +465,8 @@ int main(void) {
     #endif
 
     // ####### POWEROFF BY POWER-BUTTON #######
-    poweroffPressCheck();
+		if (power_button_released) // if released for the first time
+			poweroffPressCheck();
 
     // ####### BEEP AND EMERGENCY POWEROFF #######
     if ((TEMP_POWEROFF_ENABLE && board_temp_deg_c >= TEMP_POWEROFF && speedAvgAbs < 20) || (batVoltage < BAT_DEAD && speedAvgAbs < 20)) {  // poweroff before mainboard burns OR low bat 3
@@ -487,6 +494,12 @@ int main(void) {
       backwardDrive = 0;
     }
 
+		
+		// Shutdown preventer, prevents shutdown before releasing the power button
+		if (power_button_released == false) {
+			if(HAL_GPIO_ReadPin(BUTTON_PORT, BUTTON_PIN) == 0) 
+				power_button_released = true;
+		}
 
     // ####### INACTIVITY TIMEOUT #######
     if (abs(cmdL) > 50 || abs(cmdR) > 50) {
