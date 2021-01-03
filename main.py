@@ -11,10 +11,10 @@ class BobbyCar(object):
         self.direction = 0 # stationary
 
         # speeds
-        self.gears_forward = 10  # number of forward gears
-        self.gears_backward = 3  # number of backward gears
-        self.speed_stepping = 50 # increment per gear
-        self.speed_default = 100  # i.e target speed 1st gear = default + 1x stepping
+        self.gears_forward = 4  # number of forward gears
+        self.gears_backward = 2  # number of backward gears
+        self.speed_stepping = 25 # increment per gear
+        self.speed_default = 75  # i.e target speed 1st gear = default + 1x stepping
 
         self.loop()
 
@@ -29,6 +29,7 @@ class BobbyCar(object):
                 self.board.speed = 0
                 self.speed_previous = 0
                 self.board.send(0) # stationary
+                
             elif self.control.warn_previous:
                 self.board.flush() # empty rx buffer
 

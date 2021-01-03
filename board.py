@@ -12,7 +12,7 @@ class HoverBoard(object):
 
         # parameters
         self.debug = False
-        self.speed_stepping = 5 # speed increments, for smoothness
+        self.speed_stepping = 3 # speed increments, for smoothness
         self.speed_minimum  = 50 # speed needed to spin up motors  
 
         print('HoverBoard initialized')

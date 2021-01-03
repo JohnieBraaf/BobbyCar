@@ -4,19 +4,20 @@ class Controller(object):
     def __init__(self):
 
         # Pin mapping
-        self.minus_pin = pyb.ADC(pyb.Pin.board.PC0)
-        self.plus_pin = pyb.ADC(pyb.Pin.board.PC1)
-        self.applause_pin = pyb.ADC(pyb.Pin.board.PC2)
+        self.minus_pin = pyb.ADC(pyb.Pin.board.PB1)
+        self.plus_pin = pyb.ADC(pyb.Pin.board.PA5)
+        self.applause_pin = pyb.ADC(pyb.Pin.board.PA6)
 
-        self.tool_pin = pyb.ADC(pyb.Pin.board.PA0)
-        self.start_pin = pyb.ADC(pyb.Pin.board.PA1)
+        self.tool_pin = pyb.ADC(pyb.Pin.board.PA7)
+        self.start_pin = pyb.ADC(pyb.Pin.board.PA0)
         # PA2, PA3 -> UART
-        self.warn_pin = pyb.ADC(pyb.Pin.board.PA5)
-        self.fuel_pin = pyb.ADC(pyb.Pin.board.PA6)
-        self.radio_pin = pyb.ADC(pyb.Pin.board.PA7)
+        self.warn_pin = pyb.ADC(pyb.Pin.board.PA1)
+        self.fuel_pin = pyb.ADC(pyb.Pin.board.PC1)
+        self.radio_pin = pyb.ADC(pyb.Pin.board.PC2)
 
         # parameters
         self.limit = 2000 # we check if the pin voltage goes low (i.e. below the limit value)
+        self.debug = False
 
         # initalizes states
         self.minus = self.minus_previous = False
@@ -56,6 +57,16 @@ class Controller(object):
         self.fuel = self.check(self.fuel_pin)
         self.radio_previous = self.radio
         self.radio = self.check(self.radio_pin)
+
+        if self.debug:
+            print('minus: ' +str(self.minus) + 
+                  ',plus: ' + str(self.plus) + 
+                  ',applause: ' + str(self.applause) + 
+                  ',tool: ' + str(self.tool) + 
+                  ',warn: ' + str(self.warn) +
+                  ',fuel: ' + str(self.fuel) +
+                  ',radio: ' + str(self.radio) +
+                  ',start: ' + str(self.start))
 
     def any(self):
         if self.minus + self.plus + self.applause + self.tool + self.start + self.warn + self.fuel + self.radio > 0:
