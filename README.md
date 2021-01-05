@@ -2,11 +2,15 @@
 
 Micropython based control software for a BobbyCar electrification.
 
-|------------|-------------|
-| <img src="doc/img/big_bobbycar.png" width="250"> | <img src="doc/img/big_wheel.png" width="250"> |
-| <img src="doc/img/clamp_construction.jpg" width="250"> | <img src="doc/img/frame_finished.jpg" width="250"> |
-| <img src="doc/img/electronics.jpg" width="250"> | <img src="doc/img/builtin.jpg" width="250"> |
-| <td colspan=2><img src="doc/img/finished_project.jpg" width="500">
+<table>
+ <tr>
+  <td><img src="doc/img/big_bobbycar.png" width="250"></td>
+  <td><img src="doc/img/big_wheel.png" width="250"></td> 
+ </tr>
+ <tr>
+  <td colspan="2"><img src="doc/img/finished_project.jpg" width="500"></td>
+ </tr>
+</table>
 
 Components: 
  - [Big Bobby car](doc/img/big_bobbycar.png)
