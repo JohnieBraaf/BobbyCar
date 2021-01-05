@@ -21,16 +21,16 @@ Components:
 Features:
   - Smoothened acceleration deceleration
   - Emergency breaker (Warn button)
-  - Virtual gearbox
+  - Virtual gearbox (configurable)
   - Power on with start button (hardwired)
-  - 3 minutes auto turn-off
+  - 3 minutes inactivity auto switch-off
 
 Instructions:
  - Prepare wheel construction to clamp the frame, it's thickest on the bottom (see [docs](doc/img))
  - Flash UART mode custom firmware to the hoverboard using the ST-Link on the STM32F4Discovery
  - Flash STM32F4Discovery with [STM32CubeProgrammer](https://www.st.com/en/development-tools/stm32cubeprog.html), keep reset button pressed if it won't connect
  - Place python files on the PYBFLASH using the Micro USB port on the STM32F4Discovery
- - Solder wires to each of the buttons positive side (measure relative to ground) and old scart cable is ideal and connect wires to STM32F4Discovery pins (except start button)
- - Wire start button seperately to the Hoverboard power switch pins
- - Use an old gyro sensor board of the hoverboard to tap 5V and GRND for powering the STM32F4Discovery
- - Swear, curse and/or use some elbow grease to cram all the components inside the car
+ - Solder wires to each wheel buttons positive side (measure relative to ground) a old scart cable is ideal to connect all wires to STM32F4Discovery pins
+ - Wire start button seperately to the Hoverboard power switch pins (disconnect original wires from the original circuit of the wheel)
+ - You can a old gyro sensor board of the hoverboard to tap 5V and GRND for powering the STM32F4Discovery
+ - Swear, curse, pray and/or use some elbow grease to cram all the components through that little hole in the car
